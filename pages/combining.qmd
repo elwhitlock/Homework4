@@ -74,7 +74,7 @@ wine_data <- bind_rows(white_wine_data, red_wine_data)
 
 ## Q6, Q7, Q8, and Q9
 
-Look at high-quality, reasonable alcohol value wines. Sort from high to low quality. Show only variables that contain 'acid' the **alcohol** variable, **type** variable and **quality** variable. Group by quality variable.
+Look at high-quality, reasonable alcohol value wines. Sort from high to low quality. Show only variables that contain 'acid' the **alcohol** variable, **type** variable and **quality** variable. Group by **quality** variable. Finally find the mean and median for **alcohol**
 
 ```{r}
 wine_data |>
