@@ -6,4 +6,85 @@ editor_options:
   chunk_output_type: inline
 ---
 
-Answers go here!
+# Wine Data
+
+# Task 3
+
+Packages
+
+```{r}
+library(readxl)
+library(dplyr)
+library(readr)
+```
+
+## Q1
+
+Read in excel data, note we want the first sheet.
+
+```{r}
+white_wine_data <- read_excel("white-wine.xlsx",
+                              sheet = excel_sheets("white-wine.xlsx")[1])
+
+white_wine_data
+```
+
+## Q2 and Q3
+
+Read in the second sheet, use it to overwrite the column names of the white wine data. 
+
+```{r}
+var_names <- read_excel("white-wine.xlsx",
+                              sheet = excel_sheets("white-wine.xlsx")[2])
+
+var_names=var_names[[1]]
+
+colnames(white_wine_data) <- var_names
+```
+
+
+## Q3
+
+Then add column to mark all wines 'white'.
+
+```{r}
+white_wine_data$type <- "White"
+```
+
+## Q4 
+
+Read in the data. Fix column names. Create column with wine type.
+
+```{r}
+red_wine_data <- read_delim("red-wine.csv",
+                            delim = ";")
+
+colnames(red_wine_data) <- var_names
+
+red_wine_data$type <- "Red"
+```
+
+## Q5
+
+Combine the two!
+
+```{r}
+wine_data <- bind_rows(white_wine_data, red_wine_data)
+```
+
+## Q6, Q7, Q8, and Q9
+
+We will make big chain to do the following: Look at high-quality, reasonable alcohol value wines. Sort from high to low quality. Show only variables that contain 'acid' the **alcohol** variable, **type** variable and **quality** variable. Group by quality variable.
+
+```{r}
+wine_data |>
+  filter(quality > 6.5, alcohol < 132) |>
+  arrange(desc(quality)) |>
+  select(contains("acid"), alcohol, type, quality) |>
+  group_by(quality) |>
+  mutate(alc_mean=mean(alcohol),alc_sd=sd(alcohol))
+   
+```
+
+
+

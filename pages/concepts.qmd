@@ -6,5 +6,39 @@ editor_options:
   chunk_output_type: inline
 ---
 
+# Task 1
 
-Answers go here!
+## Q1
+
+We could do "../MyData.csv"
+
+## Q2
+
+Benefits include:
+
+-   Easy integration with version control
+
+-   Enhanced reproducibility
+
+-   A more collaborative work environment
+
+## Q3
+
+Git is the actual system that allows us to keep track of our code while GitHub is the platform that hosts peoples codes.
+
+## Q4
+
+Tibbles do not coerce down to a vector when you subset to only one column using \[. Tibbles are also easier to use with chain operators.
+
+## Q5
+
+Write as
+
+"as_tibble(iris) \|\>
+
+select(starts_with("Petal"), Species) \|\>
+
+filter(Petal.Length \< 1.55) \|\>
+
+arrange(Species)"
+
